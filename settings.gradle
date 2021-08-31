@@ -1,0 +1,2 @@
+rootProject.name = "Formulario Persona"
+include ':app'
