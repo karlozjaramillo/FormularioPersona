@@ -1,16 +1,31 @@
 package com.cj.formulariopersona;
-
+/**
+ * @author Carlos Jaramillo
+ * @version 1.0
+ */
 public class Person {
+    /**
+     * Atributos de clase.
+     */
     private String name;
     private String lastName;
     private String document;
 
+    /**
+     * Constructor.
+     * @param name
+     * @param lastName
+     * @param document
+     */
     public Person(String name, String lastName, String document) {
         this.name = name;
         this.lastName = lastName;
         this.document = document;
     }
 
+    /**
+     * Getters and Setters.
+     */
     public String getName() {
         return name;
     }
