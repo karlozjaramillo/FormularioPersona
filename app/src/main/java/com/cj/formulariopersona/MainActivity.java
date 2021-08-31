@@ -8,54 +8,57 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText txtNombre;
-    private EditText txtApellido;
-    private EditText txtCedula;
-    private Button btnIngresar;
-    private ArrayList<Persona> personas = new ArrayList<>();
+    private EditText txtName;
+    private EditText txtLastName;
+    private EditText txtDocument;
+    private Button btnSubmit;
+    private ArrayList<Person> persons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtNombre = findViewById(R.id.txtNombre);
-        txtApellido = findViewById(R.id.txtApellido);
-        txtCedula = findViewById(R.id.txtCedula);
-        btnIngresar = findViewById(R.id.btnIngresar);
-        btnIngresar.setOnClickListener(this);
+        txtName = findViewById(R.id.txtName);
+        txtLastName = findViewById(R.id.txtLastName);
+        txtDocument = findViewById(R.id.txtDocument);
+        btnSubmit = findViewById(R.id.btnSubmit);
+        btnSubmit.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnIngresar:
-                agregarPersona();
+            case R.id.btnSubmit:
+                addPerson();
                 break;
         }
     }
 
-    private void agregarPersona() {
-        String nombre = txtNombre.getText().toString();
-        String apellido = txtApellido.getText().toString();
-        String cedula = txtCedula.getText().toString();
+    private void addPerson() {
+        String name = txtName.getText().toString();
+        String lastName = txtLastName.getText().toString();
+        String document = txtDocument.getText().toString();
 
-        Persona persona = new Persona(nombre, apellido, cedula);
-        personas.add(persona);
-        limpiarCampos();
-        Toasty.success(this, "Se ha agregado a " + nombre + " " + apellido,
+        Person person = new Person(name, lastName, document);
+        persons.add(person);
+        cleanFields();
+//        Toasty.success(this, "Se ha agregado a " + name + " " + lastName,
+//                Toast.LENGTH_SHORT, true).show();
+        Toasty.success(this, MessageFormat.format("Se ha agregado a {0} {1}", name, lastName),
                 Toast.LENGTH_SHORT, true).show();
     }
 
-    private void limpiarCampos() {
-        txtNombre.getText().clear();
-        txtApellido.getText().clear();
-        txtCedula.getText().clear();
+    private void cleanFields() {
+        txtName.getText().clear();
+        txtLastName.getText().clear();
+        txtDocument.getText().clear();
     }
 }
